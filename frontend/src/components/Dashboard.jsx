@@ -171,8 +171,17 @@ export default function Dashboard({ interviewers, candidates }) {
           <div className="banner-body">
             <div className="banner-title">Scheduling conflict · 409</div>
             <div className="banner-msg">
-              {selected?.name ?? 'This interviewer'} is already booked — this overlaps an interview
-              with <strong>{conflict.conflictingCandidate}</strong>
+              {conflict.conflictType === 'candidate' ? (
+                <>
+                  This candidate is already booked — it overlaps an interview with{' '}
+                  <strong>{conflict.conflictingInterviewer}</strong>
+                </>
+              ) : (
+                <>
+                  {selected?.name ?? 'This interviewer'} is already booked — this overlaps an
+                  interview with <strong>{conflict.conflictingCandidate}</strong>
+                </>
+              )}
               {conflict.conflictingSlot && (
                 <>
                   {' '}on {formatDate(conflict.conflictingSlot.startTime)},{' '}

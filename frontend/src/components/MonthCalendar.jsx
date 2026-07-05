@@ -10,9 +10,12 @@ const sameDay = (a, b) =>
   a.getMonth() === b.getMonth() &&
   a.getDate() === b.getDate();
 
-export default function MonthCalendar({ selected, onPick }) {
+const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+export default function MonthCalendar({ selected, onPick, minDate }) {
   const anchor = selected || new Date();
   const [view, setView] = useState(new Date(anchor.getFullYear(), anchor.getMonth(), 1));
+  const min = minDate ? startOfDay(minDate) : null;
 
   const year = view.getFullYear();
   const month = view.getMonth();
@@ -54,18 +57,22 @@ export default function MonthCalendar({ selected, onPick }) {
       </div>
 
       <div className="cal2-grid">
-        {days.map((d, i) => (
-          <button
-            type="button"
-            key={i}
-            className={`cal2-day${d.getMonth() !== month ? ' muted' : ''}${
-              sameDay(d, selected) ? ' sel' : ''
-            }${sameDay(d, today) ? ' today' : ''}`}
-            onClick={() => onPick(d)}
-          >
-            {d.getDate()}
-          </button>
-        ))}
+        {days.map((d, i) => {
+          const disabled = min && startOfDay(d) < min;
+          return (
+            <button
+              type="button"
+              key={i}
+              disabled={disabled}
+              className={`cal2-day${d.getMonth() !== month ? ' muted' : ''}${
+                sameDay(d, selected) ? ' sel' : ''
+              }${sameDay(d, today) ? ' today' : ''}`}
+              onClick={() => onPick(d)}
+            >
+              {d.getDate()}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

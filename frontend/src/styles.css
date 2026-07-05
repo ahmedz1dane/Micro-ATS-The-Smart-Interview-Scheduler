@@ -890,8 +890,14 @@ code {
   cursor: pointer;
   transition: background 0.12s ease, color 0.12s ease;
 }
-.cal2-day:hover {
+.cal2-day:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.08);
+}
+.cal2-day:disabled {
+  color: var(--faint);
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
 }
 .cal2-day.muted {
   color: var(--faint);

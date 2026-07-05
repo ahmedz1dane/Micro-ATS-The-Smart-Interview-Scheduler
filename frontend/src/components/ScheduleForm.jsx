@@ -25,6 +25,10 @@ export default function ScheduleForm({ candidates, interviewerId, defaultDate, o
     if (!candidateId) return setError('Please choose a candidate.');
     if (!startUTC || !endUTC) return setError('Please pick a valid start and end time.');
     if (startUTC >= endUTC) return setError('Start time must be before end time.');
+    if (new Date(startUTC).getTime() < Date.now() - 60_000)
+      return setError('Start time can’t be in the past. Pick the current time or later.');
+    if (new Date(endUTC) - new Date(startUTC) > 8 * 60 * 60 * 1000)
+      return setError('An interview can’t be longer than 8 hours.');
 
     setBusy(true);
     try {

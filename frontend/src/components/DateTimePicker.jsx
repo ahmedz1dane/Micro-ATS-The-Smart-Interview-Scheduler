@@ -50,6 +50,7 @@ export default function DateTimePicker({ value, onChange }) {
         <>
           <MonthCalendar
             selected={selectedDate}
+            minDate={new Date()}
             onPick={(d) => onChange(compose(toYMD(d), hh, mm))}
           />
           <div className="dtp-time">
