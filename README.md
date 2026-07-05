@@ -19,8 +19,10 @@ interviewer's existing interviews.
 From the project root:
 
 ```bash
-./run.sh
+bash run.sh
 ```
+
+(or `./run.sh` — if you get "Permission denied", run `chmod +x run.sh` first.)
 
 This installs dependencies on the first run and starts both servers. Then open
 **http://localhost:5173**.
