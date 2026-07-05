@@ -1,0 +1,31 @@
+{
+  "name": "micro-ats-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Micro-ATS: The Smart Interview Scheduler",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js",
+    "test": "node --test tests/"
+  },
+  "keywords": [
+    "ats",
+    "interview",
+    "scheduler",
+    "express",
+    "mongodb"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "mongodb-memory-server": "^10.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}
