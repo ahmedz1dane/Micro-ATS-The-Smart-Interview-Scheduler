@@ -522,6 +522,12 @@ code {
   font-size: 0.9rem;
   letter-spacing: -0.01em;
   min-width: 0;
+  overflow: hidden;
+}
+.event-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .event-dot {
   width: 7px;
